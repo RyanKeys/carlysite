@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  django:
+    container_name: app
+    build: .
+
+    stdin_open: true
+    tty: true
+
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
