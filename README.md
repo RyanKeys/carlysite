@@ -10,11 +10,11 @@ Dates 7/20-7/31
 
 ## Description
 
-My sister works for a tutoring company that has been utilizing Google Classrooms and Zoom to give lessons. She wants a landing page with integration into Google Classrooms
+My sister works for a tutoring company that has been utilizing Canvas and Zoom to give lessons. She wants a landing page with integration into Canvas
 
 ## Challenges I Anticipate
 
-I've never worked with the Google Classroom API, I also need to discuss with them how much data they want on their site. (Ex: Just an emailing list, to aggregation of kids work based on name/subject/etc). I'm new to DevOps, so I need to show them pricing for server uptime alone.
+I've never worked with the Canvas API, I also need to discuss with them how much data they want on their site. (Ex: Just an emailing list, to aggregation of kids work based on name/subject/etc). I'm new to DevOps, so I need to show them pricing for server uptime alone.
 
 ## Skateboard
 
