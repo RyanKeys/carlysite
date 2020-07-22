@@ -1,19 +1,15 @@
-<h1>{{ question.question_text }}</h1>
+<h1>{{course}} with {{course.teacher}}</h1>
+<h3>Classroom: {{course.zoom}}</h3>
 
-{% if error_message %}
-<p><strong>{{ error_message }}</strong></p>
-{% endif %}
-
-<form action="{% url 'landing_page:vote' question.id %}" method="post">
-  {% csrf_token %} {% for choice in question.choice_set.all %}
-  <input
-    type="radio"
-    name="choice"
-    id="choice{{ forloop.counter }}"
-    value="{{ choice.id }}"
-  />
-  <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label
-  ><br />
+<h3>Assignments</h3>
+<ul>
+  {% for assignment in course.assignments.all %}
+  <li>{{assignment}}</li>
   {% endfor %}
-  <input type="submit" value="Vote" />
-</form>
+</ul>
+<h3>Students</h3>
+<ul>
+  {% for student in course.students.all %}
+  <li>{{student}}</li>
+  {% endfor %}
+</ul>

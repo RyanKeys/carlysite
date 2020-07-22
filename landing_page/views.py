@@ -3,30 +3,29 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.urls import reverse
 from django.views import generic
 from django.utils import timezone
-from .models import Course
+from .models import Course,Assignment,Student,Teacher
 
 
 
 class IndexView(generic.ListView):
     template_name = 'landing_page/index.html'
-    context_object_name = 'Courses'
+    context_object_name = 'courses'
 
     def get_queryset(self):
         """Return the last five published questions (not including those set to be
         published in the future)."""
-
         return Course.objects.all()
 
 
-# class DetailView(generic.DetailView):
-#     model = Question
-#     template_name = 'landing_page/detail.html'
+class DetailView(generic.DetailView):
+    model = Course
+    template_name = 'landing_page/detail.html'
 
-#     def get_queryset(self):
-#         """
-#         Excludes any questions that aren't published yet.
-#         """
-#         return Question.objects.filter(pub_date__lte=timezone.now())
+    def get_queryset(self):
+        """
+        Excludes any questions that aren't published yet.
+        """
+        return Course.objects.filter(pub_date__lte=timezone.now())
 
 
 # class ResultsView(generic.DetailView):
