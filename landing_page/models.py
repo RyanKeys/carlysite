@@ -32,12 +32,14 @@ class Course(models.Model):
     assignments = models.ManyToManyField(Assignment)
     zoom  = models.URLField(max_length=200)
     pub_date = models.DateTimeField("date published", null=True)
-    slug = models.SlugField(unique=True,editable=False)
+    slug = models.SlugField(unique=True,editable=True,blank=True)
     def __str__(self):
         return self.name
 
     def save(self,*args, **kwargs):
-        self.slug = slugify([self.teacher.name,self.name])
+        print(self.slug)
+        if self.slug == "":
+            self.slug = slugify([self.teacher.name,self.name])
         super(Course,self).save(*args, **kwargs)
 
     
