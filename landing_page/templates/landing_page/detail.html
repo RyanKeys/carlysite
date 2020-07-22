@@ -1,6 +1,6 @@
 <h1>{{course}} with {{course.teacher}}</h1>
+<p>{{course.description}}</p>
 <h3>Classroom: {{course.zoom}}</h3>
-
 <h3>Assignments</h3>
 <ul>
   {% for assignment in course.assignments.all %}
