@@ -1,9 +1,0 @@
-{% for course in courses %}
-<h1>
-  <a href="{% url 'landing_page:detail' course.slug%}">{{course.name}}</a>
-</h1>
-<h2>Description: {{course.description}}</h2>
-<h2>Teacher: {{course.teacher}}</h2>
-<h3>Classroom: {{course.zoom}}</h3>
-
-{% endfor %}
