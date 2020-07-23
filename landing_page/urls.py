@@ -11,5 +11,6 @@ urlpatterns = [
     path('course/<str:slug>/', views.DetailView.as_view(), name='detail'),
     # path('login/', views.login_page, name= "login" ),
     # path('logout/', views.logout_page,name='logout'),
-    path("assignments/<str:slug>/",views.DocumentView.as_view(),name="assignments")
+    # path("assignments/<str:slug>/",views.DocumentView.as_view(),name="assignments")
 ]
+urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

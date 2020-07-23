@@ -1,5 +1,14 @@
-<h1>Register</h1>
+<h1 style="text-align: center;">Register</h1>
 
-<form method="POST" action="">
-  {% csrf_token %} {{form.as_p}} <input type="submit" name="Create User" />
+<form method="POST" style="text-align: center;" action="">
+  {% csrf_token %} {% for f in form %}
+  <div class="container">{{f.label}}</div>
+  {{f}} {% endfor %}
+  <div class="container">
+    <input type="submit" name="Create User" />
+  </div>
 </form>
+<div class="container"style="text-align:center">
+  <a href="{% url 'login' %}">Login instead</a>
+  </div>
+</div>
