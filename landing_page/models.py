@@ -19,17 +19,23 @@ class Teacher(models.Model):
 class Assignment(models.Model):
     name = models.CharField(max_length=50)
     document = models.FileField(null=True,blank=True)
-    slug = models.SlugField(unique= True,blank=True,editable=True)
+    pub_date = models.DateTimeField(auto_now_add=True, blank=True)
+    slug = models.CharField(max_length=50,unique= True,blank=True,editable=False)
     
     def __str__(self):
         return self.name
-
-    def save(self,*args, **kwargs):
-        print(self.slug)
-        if self.slug == "":
-            self.slug = slugify([self.name])
-        super(Assignment,self).save(*args, **kwargs)
     
+    def get_absolute_url(self):
+        """ Returns path for a listing """
+        path_components = {'slug': self.slug}
+        return reverse('landing_page/assignment-detail', kwargs=path_components)
+
+    def save(self, *args, **kwargs):
+        """ Creates a URL safe slug automatically when a new a page is created. """
+        self.slug = slugify(self.document, allow_unicode=True)
+
+        return super(Assignment, self).save(*args, **kwargs)
+   
 class Course(models.Model):
     name = models.CharField(max_length=50)
     description = models.CharField(max_length=200,blank=True)

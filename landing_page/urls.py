@@ -9,8 +9,8 @@ urlpatterns = [
 
     path('', views.IndexView.as_view(), name='index'),
     path('course/<str:slug>/', views.DetailView.as_view(), name='detail'),
-    # path('login/', views.login_page, name= "login" ),
-    # path('logout/', views.logout_page,name='logout'),
-    # path("assignments/<str:slug>/",views.DocumentView.as_view(),name="assignments")
+    path('create-course/', views.CreateCourseView.as_view(), name= "create-course"),
+    path('course/<str:slug>/delete', views.DeleteItem.as_view()),
+    path('assignments/<str:slug>',views.DocumentView.as_view(),name='assignment-detail')
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

@@ -6,8 +6,10 @@
 </h1>
 <h2>Description: {{course.description}}</h2>
 <h2>Teacher: {{course.teacher.user.first_name}}</h2>
-<h3>Classroom: {{course.zoom}}</h3>
+<h3>Classroom: <a href="{{course.zoom}}">{{course.zoom}}</a></h3>
 {% endfor %} <a href="{% url 'logout' %}">Logout</a>
+<a href="{%url 'landing_page:create-course'%}">Create a Course</a>
 <a href="/admin">Admin Page</a>
 {% else %}<a href="{%url 'login'%}?next={{request.path}}">Login</a>
+
 {% endif %}

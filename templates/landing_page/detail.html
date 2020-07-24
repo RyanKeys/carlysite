@@ -7,7 +7,9 @@
 <ul>
   {% for assignment in course.assignments.all %}
   <li>
-    <a href="../../assignments/{{assignment.document}}">{{assignment.name}}</a>
+    <a href="{% url 'landing_page:assignment-detail' assignment.slug %}"
+      >{{assignment.name}}</a
+    >
   </li>
   {% endfor %}
 </ul>
