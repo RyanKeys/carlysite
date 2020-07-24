@@ -19,4 +19,6 @@
   <li>{{student.user.first_name}}</li>
   {% endfor %}
   <a href="{% url 'landing_page:index' %}">Go Home</a>
+  <a href="{% url 'landing_page:delete-course' course.slug %}">Delete Course</a>
+  <a href="{% url 'landing_page:edit-course' course.slug %}">Edit Course</a>
 </ul>

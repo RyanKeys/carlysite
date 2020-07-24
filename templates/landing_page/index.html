@@ -1,5 +1,5 @@
 {% if user.is_authenticated %}
-<h1>Welcome {{user.username}}!</h1>
+<h1>Welcome {{user.first_name}}!</h1>
 {% for course in courses %}
 <h1>
   <a href="{% url 'landing_page:detail' course.slug%}">{{course.name}}</a>
@@ -10,6 +10,7 @@
 {% endfor %} <a href="{% url 'logout' %}">Logout</a>
 <a href="{%url 'landing_page:create-course'%}">Create a Course</a>
 <a href="/admin">Admin Page</a>
+<a href="{% url 'landing_page:create-assignment' %}">Create an Assignment</a>
 {% else %}<a href="{%url 'login'%}?next={{request.path}}">Login</a>
 
 {% endif %}

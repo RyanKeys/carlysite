@@ -1,5 +1,11 @@
 {% load static %}
 
-<h1>Doc Viewer</h1>
+<h1>{{assignment.name}}</h1>
 <img src="{{assignment.document.url}}" />
-<h2>{{assignment.document.url}}</h2>
+<iframe src="{{assignment.document.url}}" width="100%" height="500px"> </iframe>
+<h2>{{assignment}}</h2>
+<a href="{% url 'landing_page:index' %}">Back to Course Page</a>
+<a href="{% url 'landing_page:edit-assignment' assignment.slug %}"
+  >Edit Assignment</a
+>
+{{assignment.pub_date}}

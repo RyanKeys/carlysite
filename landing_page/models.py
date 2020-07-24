@@ -7,19 +7,19 @@ class Student(models.Model):
     drive = models.URLField(max_length=50,blank=False)
 
     def __str__(self):
-        return self.user.username
+        return self.user.first_name + " " + self.user.last_name
 
 class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     drive = models.URLField(max_length=50,blank=False)
     
     def __str__(self):
-        return self.user.username  
+        return self.user.first_name + " " + self.user.last_name
 
 class Assignment(models.Model):
     name = models.CharField(max_length=50)
-    document = models.FileField(null=True,blank=True)
-    pub_date = models.DateTimeField(auto_now_add=True, blank=True)
+    document = models.FileField(null=True,blank=False)
+    pub_date = models.DateTimeField(auto_now_add=True, blank=False,editable=False)
     slug = models.CharField(max_length=50,unique= True,blank=True,editable=False)
     
     def __str__(self):
@@ -32,27 +32,27 @@ class Assignment(models.Model):
 
     def save(self, *args, **kwargs):
         """ Creates a URL safe slug automatically when a new a page is created. """
-        self.slug = slugify(self.document, allow_unicode=True)
+        slug = self.name + str(self.pk)
+        self.slug = slugify(slug)
 
         return super(Assignment, self).save(*args, **kwargs)
    
 class Course(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50,unique=True)
     description = models.CharField(max_length=200,blank=True)
     teacher = models.ForeignKey(Teacher, null=True,on_delete=models.SET_NULL)
     students = models.ManyToManyField(Student)
     assignments = models.ManyToManyField(Assignment)
     zoom  = models.URLField(max_length=200)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True)
-    slug = models.SlugField(unique=True,editable=True,blank=True)
+    slug = models.SlugField(unique=True,editable=False)
     
     def __str__(self):
         return self.name
 
     def save(self,*args, **kwargs):
-        print(self.slug)
         if self.slug == "":
-            self.slug = slugify([self.teacher.user.username,self.name])
+            self.slug = slugify(str(self.teacher.user.username) + str(self.name), allow_unicode=True)
         super(Course,self).save(*args, **kwargs)
 
     

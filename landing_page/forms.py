@@ -1,13 +1,16 @@
 from django.forms import ModelForm
-from .models import Course
+from .models import Course, Assignment
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 
 
-class FileFieldForm(forms.Form):
-    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
 
+
+class AssignmentForm(ModelForm):
+    class Meta:
+        model = Assignment
+        fields = '__all__'
 
 class CourseForm(ModelForm):
     class Meta:

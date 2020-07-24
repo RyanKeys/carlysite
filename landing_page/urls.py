@@ -8,9 +8,12 @@ app_name = 'landing_page'
 urlpatterns = [
 
     path('', views.IndexView.as_view(), name='index'),
-    path('course/<str:slug>/', views.DetailView.as_view(), name='detail'),
     path('create-course/', views.CreateCourseView.as_view(), name= "create-course"),
-    path('course/<str:slug>/delete', views.DeleteItem.as_view()),
-    path('assignments/<str:slug>',views.DocumentView.as_view(),name='assignment-detail')
+    path('course/<str:slug>/', views.DetailView.as_view(), name='detail'),
+    path('course/<str:slug>/edit', views.EditCourseView.as_view(), name="edit-course"),
+    path('course/<str:slug>/delete', views.DeleteCourseView.as_view(),name= 'delete-course'),
+    path('create-assignment/',views.CreateAssignmentView.as_view(),name='create-assignment'),
+    path('assignments/<str:slug>/',views.DocumentView.as_view(),name='assignment-detail'),
+    path('assignments/<str:slug>/edit/', views.EditAssignmentView.as_view(), name='edit-assignment'),
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)
