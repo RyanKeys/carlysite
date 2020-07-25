@@ -1,36 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>School Portal-Login</title>
-  </head>
-  <body>
+{% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h2 style="text-align: center;">
+    School Portal Login
+  </h2>
+  <form method="post" style="text-align: center;">
+    {% csrf_token %}
     <div class="container">
-      <h2 style="text-align: center;">
-        School Portal Login
-      </h2>
-      <form method="post" style="text-align: center;">
-        {% csrf_token %}
-        <div class="container">
-          {{ form.username.label }}
-        </div>
-
-        {{form.username}}
-
-        <div class="container">
-          {{form.password.label}}
-        </div>
-        {{form.password}}
-        <div class="container">
-          <button type="submit">
-            Login
-          </button>
-        </div>
-      </form>
-      <a style="text-align: center; display: block;" href="{% url 'register' %}"
-        >Create an Account</a
-      >
+      {{ form.username.label }}
     </div>
-  </body>
-</html>
+
+    {{form.username}}
+
+    <div class="container">
+      {{form.password.label}}
+    </div>
+    {{form.password}}
+    <div class="container">
+      <button type="submit">
+        Login
+      </button>
+    </div>
+  </form>
+  <a style="text-align: center; display: block;" href="{% url 'register' %}"
+    >Create an Account</a
+  >
+</div>
+{% endblock %}

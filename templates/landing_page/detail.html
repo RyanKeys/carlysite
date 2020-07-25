@@ -1,5 +1,4 @@
-{% load static%}
-
+{% extends 'base.html' %} {% load static%} {% block content %}
 <h1>{{course}} with {{course.teacher.user.first_name}}</h1>
 <p>{{course.description}}</p>
 <a href="{{course.zoom}}"><h3>Classroom</h3></a>
@@ -22,3 +21,4 @@
   <a href="{% url 'landing_page:delete-course' course.slug %}">Delete Course</a>
   <a href="{% url 'landing_page:edit-course' course.slug %}">Edit Course</a>
 </ul>
+{% endblock %}
