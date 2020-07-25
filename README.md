@@ -22,7 +22,7 @@ Create a landing page that adds people to a mailing list.
 
 ## Bike
 
-CRUD Canvas, specifically new courses.
+CRUD Google Classroom, specifically new courses.
 
 ## Car
 
