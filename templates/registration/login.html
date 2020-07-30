@@ -3,7 +3,7 @@
   <h2 style="text-align: center;">
     School Portal Login
   </h2>
-  <form method="post" style="text-align: center;">
+  <form class="form-signin" method="post" style="text-align: center;">
     {% csrf_token %}
     <div class="container">
       {{ form.username.label }}
