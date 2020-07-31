@@ -6,24 +6,32 @@
     </h1>
     <a style="text-align: center;" href="{{course.zoom}}"><h3>Classroom</h3></a>
     <p style="text-align: center;">{{course.description}}</p>
+    <div class="container d-flex justify-content-around">
+      <div class="column">
+        <h3>Assignments:</h3>
+        <ul>
+          {% for assignment in course.assignments.all %}
+          <li>
+            <a href="{% url 'landing_page:assignment-detail' assignment.slug %}"
+              >{{assignment.name}}</a
+            >
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="column">
+        <h3>Students:</h3>
+        <ul>
+          {% for student in course.students.all %}
+          <li>{{student.user.first_name}}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      </div>
+    </div>
   </div>
-</div>
-<h3>Assignments:</h3>
-<ul>
-  {% for assignment in course.assignments.all %}
-  <li>
-    <a href="{% url 'landing_page:assignment-detail' assignment.slug %}"
-      >{{assignment.name}}</a
-    >
-  </li>
-  {% endfor %}
-</ul>
-<h3>Students:</h3>
-<ul>
-  {% for student in course.students.all %}
-  <li>{{student.user.first_name}}</li>
-  {% endfor %}
+
   <a href="{% url 'landing_page:delete-course' course.slug %}">Delete Course</a>
   <a href="{% url 'landing_page:edit-course' course.slug %}">Edit Course</a>
-</ul>
-{% endblock %}
+  {% endblock %}
+</div>
