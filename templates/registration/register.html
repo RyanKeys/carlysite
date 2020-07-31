@@ -7,7 +7,7 @@
         {% csrf_token %} {% for f in form %}
         <div>{{f.label}}</div>
         {{f}} {% endfor %}
-        <div style="padding-top: 5%;">
+        <div class="form-padding"">
           <input type="submit" name="Create User" />
         </div>
       </form>
