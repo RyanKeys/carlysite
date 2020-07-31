@@ -2,21 +2,22 @@
 <div class="container d-flex justify-content-center" style="padding-top: 1rem;">
   <div class="card mb-4 shadow-sm" style="width: 50rem;">
     <h1 style="text-align: center;">{{assignment.name}}</h1>
-  </div>
-</div>
-<iframe src="{{assignment.document.url}}" width="100%" height="750"> </iframe>
-<div class="d-flex justify-content-center">
-  <div class="card mb-4 shadow-sm" style="width: 50rem;">
     <ul>
       <li>REEE</li>
       <li>REEE</li>
       <li>REEE</li>
     </ul>
-    <a href="{% url 'landing_page:index' %}">Back to Course Page</a>
-    <a href="{% url 'landing_page:edit-assignment' assignment.slug %}"
-      >Edit Assignment</a
-    >
-    {{assignment.pub_date}}
+    <div class="container d-flex justify-content-around">
+      <p>Published: {{assignment.pub_date}}</p>
+    </div>
+    <div class="container d-flex justify-content-between">
+      <a href="{% url 'landing_page:index' %}">Back to Course Page</a>
+      <a href="{% url 'landing_page:edit-assignment' assignment.slug %}"
+        >Edit Assignment</a
+      >
+    </div>
   </div>
 </div>
+<iframe src="{{assignment.document.url}}" width="100%" height="750"> </iframe>
+
 {% endblock %}

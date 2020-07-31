@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% load static%} {% block content %}
-<div class="container d-flex justify-content-center" style="padding-top: 1rem;">
+<div class="container d-flex justify-content-center" style="padding-top: 5%;">
   <div class="card mb-4 shadow-sm" style="width: 50rem;">
     <h1 style="text-align: center;">
       {{course}} with {{course.teacher.user.first_name}}
@@ -27,11 +27,15 @@
           {% endfor %}
         </ul>
       </div>
-      </div>
+    </div>
+    <hr />
+
+    <div class="container d-flex justify-content-around">
+      <a href="{% url 'landing_page:delete-course' course.slug %}"
+        >Delete Course</a
+      >
+      <a href="{% url 'landing_page:edit-course' course.slug %}">Edit Course</a>
     </div>
   </div>
-
-  <a href="{% url 'landing_page:delete-course' course.slug %}">Delete Course</a>
-  <a href="{% url 'landing_page:edit-course' course.slug %}">Edit Course</a>
-  {% endblock %}
 </div>
+{% endblock %}

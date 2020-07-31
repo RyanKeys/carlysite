@@ -3,13 +3,14 @@ from django.urls import reverse, reverse_lazy
 from django.views import generic
 from django.utils import timezone
 from .models import Course, Assignment
-from .forms import * 
+from .forms import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth import login, logout, authenticate
 from django.views.generic.edit import FormView, DeleteView, UpdateView
 
-class IndexView(LoginRequiredMixin,generic.ListView):
+
+class IndexView(LoginRequiredMixin, generic.ListView):
     template_name = 'landing_page/index.html'
     context_object_name = 'courses'
 
@@ -19,7 +20,7 @@ class IndexView(LoginRequiredMixin,generic.ListView):
         return Course.objects.all()
 
 
-class DetailView(LoginRequiredMixin,generic.DetailView):
+class DetailView(LoginRequiredMixin, generic.DetailView):
     model = Course
     template_name = 'landing_page/detail.html'
 
@@ -30,17 +31,18 @@ class DetailView(LoginRequiredMixin,generic.DetailView):
         return Course.objects.filter(pub_date__lte=timezone.now())
 
 
-class DocumentView(LoginRequiredMixin,generic.DetailView):
+class DocumentView(LoginRequiredMixin, generic.DetailView):
     model = Assignment
-    def get(self,request,slug):
-        
+    def get(self, request, slug):
+
         assignment = self.get_queryset().get(slug__iexact=slug)
-        return render(request,'landing_page/document_viewer.html',{'assignment': assignment })
+        return render(request, 'landing_page/document_viewer.html', {'assignment': assignment})
 
 
 class CreateCourseView(FormView):
     form_class = CourseForm
-    template_name = 'landing_page/form_upload.html'  # Replace with your template.
+    # Replace with your template.
+    template_name = 'landing_page/form_upload.html'
     success_url = '/'  # Replace with your URL or reverse().
 
     def post(self, request, *args, **kwargs):
@@ -52,7 +54,6 @@ class CreateCourseView(FormView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
-
 
 
 class EditCourseView(UpdateView):
@@ -66,38 +67,32 @@ class DeleteCourseView(DeleteView):
     model = Course
     success_url = '/'
 
+
 class CreateAssignmentView(FormView):
     form_class = AssignmentForm
-    template_name = 'landing_page/form_upload.html'  # Replace with your template.
+    # Replace with your template.
+    template_name = 'landing_page/form_upload.html'
     success_url = '/'  # Replace with your URL or reverse().
 
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        files = request.FILES.getlist('file_field')
-        if form.is_valid():
-            form.save()
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
 
 class EditAssignmentView(UpdateView):
     model = Assignment
     fields = '__all__'
     template_name_suffix = '_edit_form'
     success_url = reverse_lazy("landing_page:index")
-    
+
+
 def register_page(request):
     if request.user.is_authenticated:
         return redirect('landing_page:index')
     else:
         form = CreateUserForm()
-        if request.method =='POST':
+        if request.method == 'POST':
             form = CreateUserForm(request.POST)
             if form.is_valid():
                 form.save()
-        context = {'form':form}
-        return render(request,'registration/register.html',context)
+        context = {'form': form}
+        return render(request, 'registration/register.html', context)
 
 
 def login_page(request):
@@ -105,7 +100,7 @@ def login_page(request):
         return redirect('landing_page:index')
     else:
         context = {}
-        return render(request,'registration/login.html',context)
+        return render(request, 'registration/login.html', context)
 
 
 def logout_page(request):
