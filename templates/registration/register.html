@@ -1,15 +1,17 @@
 {% extends 'base.html' %} {% block content %}
-<h1 style="text-align: center;">Register</h1>
-<form method="POST" style="text-align: center;" action="">
-  {% csrf_token %} {% for f in form %}
-  <div class="container">{{f.label}}</div>
-  {{f}} {% endfor %}
-  <div class="container">
-    <input type="submit" name="Create User" />
-  </div>
-</form>
-<div class="container"style="text-align:center">
-  <a href="{% url 'login' %}">Login instead</a>
+<div class="container d-flex justify-content-center form-padding">
+  <div class="col-md-4">
+    <div class="card mb-4 shadow-sm">
+      <h1 style="text-align: center;">Register</h1>
+      <form method="POST" style="text-align: center;" action="">
+        {% csrf_token %} {% for f in form %}
+        <div>{{f.label}}</div>
+        {{f}} {% endfor %}
+        <div style="padding-top: 5%;">
+          <input type="submit" name="Create User" />
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 {% endblock %}

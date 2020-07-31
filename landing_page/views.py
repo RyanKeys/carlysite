@@ -42,7 +42,7 @@ class DocumentView(LoginRequiredMixin, generic.DetailView):
 class CreateCourseView(FormView):
     form_class = CourseForm
     # Replace with your template.
-    template_name = 'landing_page/form_upload.html'
+    template_name = 'registration/register.html'
     success_url = '/'  # Replace with your URL or reverse().
 
     def post(self, request, *args, **kwargs):
@@ -59,7 +59,7 @@ class CreateCourseView(FormView):
 class EditCourseView(UpdateView):
     model = Course
     fields = '__all__'
-    template_name_suffix = '_edit_form'
+    template_name = 'registration/register.html'
     success_url = './'
 
 
@@ -71,14 +71,14 @@ class DeleteCourseView(DeleteView):
 class CreateAssignmentView(FormView):
     form_class = AssignmentForm
     # Replace with your template.
-    template_name = 'landing_page/form_upload.html'
+    template_name = 'registration/register.html'
     success_url = '/'  # Replace with your URL or reverse().
 
 
 class EditAssignmentView(UpdateView):
     model = Assignment
     fields = '__all__'
-    template_name_suffix = '_edit_form'
+    template_name = 'registration/register.html'
     success_url = reverse_lazy("landing_page:index")
 
 
