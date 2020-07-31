@@ -1,28 +1,30 @@
 {% extends 'base.html' %} {% block content %}
-<div class="container">
-  <h2 style="text-align: center;">
-    School Portal Login
-  </h2>
-  <form class="form-signin" method="post" style="text-align: center;">
-    {% csrf_token %}
-    <div class="container">
-      {{ form.username.label }}
-    </div>
+<div class="container d-flex justify-content-center">
+  <div class="card mb-4 shadow-sm" style="width: 30rem; margin-top: 5%;">
+    <h2 style="text-align: center;">
+      School Portal Login
+    </h2>
+    <form class="form-signin" method="post" style="text-align: center;">
+      {% csrf_token %}
+      <div class="container">
+        {{ form.username.label }}
+      </div>
 
-    {{form.username}}
+      {{form.username}}
 
-    <div class="container">
-      {{form.password.label}}
-    </div>
-    {{form.password}}
-    <div class="container">
-      <button type="submit">
-        Login
-      </button>
-    </div>
-  </form>
-  <a style="text-align: center; display: block;" href="{% url 'register' %}"
-    >Create an Account</a
-  >
+      <div class="container">
+        {{form.password.label}}
+      </div>
+      {{form.password}}
+      <div class="container">
+        <button type="submit">
+          Login
+        </button>
+      </div>
+    </form>
+    <a style="text-align: center; display: block;" href="{% url 'register' %}"
+      >Create an Account</a
+    >
+  </div>
 </div>
 {% endblock %}
